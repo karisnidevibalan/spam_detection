@@ -1,7 +1,8 @@
 import streamlit as st
 import joblib
 import numpy as np
-
+import os
+import streamlit as st
 # Load model and vectorizer
 model = joblib.load('spam_model.pkl')
 vectorizer = joblib.load('tfidf_vectorizer.pkl')
@@ -24,3 +25,8 @@ if st.button("Check"):
             st.success("✅ This is NOT spam.")
     else:
         st.warning("Please enter some text!")
+    try:
+        import joblib
+    except ModuleNotFoundError:
+        os.system("pip install joblib")
+        import joblib  # Import again after installation
